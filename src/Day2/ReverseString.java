@@ -18,7 +18,7 @@ public class ReverseString {
     }
 
     public static void main(String[] args) {
-        String s = "Geeks";
+        String s = "Alex";
         String ans = reverseWord(s);
         System.out.println(ans);
     }
