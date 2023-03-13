@@ -1,34 +1,30 @@
 package Day3;
-
+//! Undirected Graph
 public class AdjacentMatrix {
-    private final boolean[][] adjMatrix;
-    private final int numVertices;
+    private final int V;
+    private int E;
+    private final int[][] adjMatrix;
 
-    // Initialize the matrix
-    public AdjacentMatrix(int numVertices) {
-        this.numVertices = numVertices;
-        adjMatrix = new boolean[numVertices][numVertices];
+    public AdjacentMatrix(int nodes) {
+        this.V = nodes;
+        this.E = 0;
+        this.adjMatrix = new int[nodes][nodes];
     }
 
-    // Add edges
-    public void addEdge(int i, int j) {
-        adjMatrix[i][j] = true;
-        adjMatrix[j][i] = true;
+    public void addEdges(int u, int v) {
+        //? This is because it is an undirected graph
+        adjMatrix[u][v] = 1;
+//        adjMatrix[v][u] = 1;
+        E++;
     }
 
-    // Remove edges
-    public void removeEdge(int i, int j) {
-        adjMatrix[i][j] = false;
-        adjMatrix[j][i] = false;
-    }
-
-    // Print the matrix
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int i = 0; i < numVertices; i++) {
-            s.append(i).append(": ");
-            for (boolean j : adjMatrix[i]) {
-                s.append(j ? 1 : 0).append(" ");
+        s.append(V).append(" Vertices, ").append(E).append(" Edges \n");
+        for (int i = 0; i < V; i++) {
+            s.append(i).append(" : ");
+            for (int j : adjMatrix[i]) {
+                s.append(j).append(" ");
             }
             s.append("\n");
         }
@@ -36,16 +32,16 @@ public class AdjacentMatrix {
     }
 
     public static void main(String[] args) {
-        AdjacentMatrix am = new AdjacentMatrix(5);
+        AdjacentMatrix am = new AdjacentMatrix(4);
+        am.addEdges(1, 2);
+        am.addEdges(3, 1);
+        am.addEdges(1, 0);
+        am.addEdges(0, 3);
+        am.addEdges(2, 0);
+        am.addEdges(2, 1);
+        am.addEdges(2, 2);
+        am.addEdges(2, 3);
 
-        am.addEdge(0, 1);
-        am.addEdge(0, 2);
-        am.addEdge(1, 2);
-        am.addEdge(2, 0);
-        am.addEdge(2, 3);
-        am.addEdge(4,1);
-
-        am.removeEdge(2, 4);
-        System.out.print(am);
+        System.out.println(am);
     }
 }
