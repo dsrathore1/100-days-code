@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Separate_OddAndEven {
+
+    //! This method separate the odd and even although this method sort the evens forward and odds backwards #Accepted_at_GEEKSFORGEEKS
     public static void separateFun(int[] arr) {
         ArrayList<Integer> arr1 = new ArrayList<>();
         ArrayList<Integer> arr2 = new ArrayList<>();
@@ -36,8 +38,34 @@ public class Separate_OddAndEven {
         }
     }
 
+    //! This is the short and optimized way to separate odd and even in same array but this method does not sort them
+    public static void method2(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low < high) {
+            while (arr[low] % 2 == 0 && low < high) {
+                low++;
+            }
+            while (arr[high] % 2 == 1 && low < high) {
+                high--;
+            }
+            if (low < high) {
+                int temp = arr[low];
+                arr[low] = arr[high];
+                arr[high] = temp;
+                low++;
+                high--;
+            }
+        }
+        for (int j : arr) {
+            System.out.print(j + " ");
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {2, 3, 4, 8, 9, 7, 3, 12, 54, 32, 121};
         separateFun(arr);
+        System.out.println("This the different way to separate odd and even :- ");
+        method2(arr);
     }
 }
