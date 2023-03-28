@@ -20,7 +20,7 @@ public class UserOperation {
 
         System.out.println("Your output after twice :- ");
         for (int k : x) {
-            System.out.println(k);
+            System.out.println(Math.abs(k));
         }
 
     }
